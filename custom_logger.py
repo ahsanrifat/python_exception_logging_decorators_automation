@@ -23,7 +23,7 @@ class CustomLogger:
                 
                 LOG_FILENAME = self.get_log_file_full_path()
                 logging.basicConfig(
-                    level=logging.ERROR,
+                    level=logging.DEBUG,
                     filename=LOG_FILENAME,
                     format="========(START)--Date: %(asctime)s Level: %(levelname)s==========>\n%(message)s<===========(END)==========>\n",
                 )
@@ -59,5 +59,14 @@ class CustomLogger:
                 self.initiate_log()
             msz=str(args)+"\n"+str(kwargs)
             self.logger.error(msz)
+        except Exception as e:
+            print(f"Exception-(error)->{e}")
+            
+    def debug(self, *args,**kwargs):
+        try:
+            if not self.logger:
+                self.initiate_log()
+            msz="Args:"+str(args)+"\nKwargs:"+str(kwargs)+"\n"
+            self.logger.debug(msz)
         except Exception as e:
             print(f"Exception-(error)->{e}")

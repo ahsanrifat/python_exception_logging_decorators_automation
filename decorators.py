@@ -26,7 +26,8 @@ def handle_exception(
                     return func(*args,**kwargs)
                 else:
                     from helper_functions import get_execution_time
-                    func_result,time_str= get_execution_time(func,*args,**kwargs) 
+                    func_result,time_str= get_execution_time(func,*args,**kwargs)
+                    c_logger.debug(time_str) 
                     return func_result        
             except Exception as e:
                 if print_exception:
@@ -44,8 +45,7 @@ def handle_exception(
 
 # example of how to use
 if __name__=="__main__":
-    @handle_exception(skip_args=False,log_file_name="test_name.log")
+    @handle_exception(skip_args=False,log_file_name="test_name.log",log_exe_time=True)
     def test_decoretor(name,k="sdsd"):
         print("Testing main func")
-        print(2/0)
-    test_decoretor("Rifat",k="sdsd",l="ghth")
+    test_decoretor("Rifat",k="sdsd")

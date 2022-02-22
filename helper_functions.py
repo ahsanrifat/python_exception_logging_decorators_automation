@@ -12,4 +12,4 @@ def get_execution_time(func,*args,**kwargs):
         taken_time_str=f"{taken_time} s"
         print(taken_time_str)
     print("----Timeit done------\n")
-    return (result,taken_time_str)
+    return (result,func.__name__+"-->"+taken_time_str)
